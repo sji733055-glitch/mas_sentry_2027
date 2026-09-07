@@ -25,7 +25,7 @@ struct Motor_Base
     Motor_Measure_s    measure;
     Offline_Device    *offline_dev;
 
-    void *transport_dev; /* 底层设备句柄 (Can_Device / UART_Device / PWM_Device) */
+    void *transport_dev; /* 底层设备句柄 (Can_Device) */
 
     /* 输出应用 → 传输层 (协议层实现) */
     void (*Apply)(Motor_Base *motor);

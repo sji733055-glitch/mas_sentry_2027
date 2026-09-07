@@ -93,18 +93,12 @@ if(MODULE_MOTOR)
         MOTOR/DJI/motor_dji.c
         MOTOR/POWER_CONTROL/power_control.c
         MOTOR/DAMIAO/motor_damiao.c
-        MOTOR/SERVO/motor_servo.c
-        MOTOR/ZDT_STEPMOTOR/motor_zdt.c
-        MOTOR/LK/motor_lk.c
     )
     list(APPEND _module_includes
         ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR
         ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/DJI
         ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/DAMIAO
-        ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/SERVO
-        ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/ZDT_STEPMOTOR
         ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/POWER_CONTROL
-        ${CMAKE_CURRENT_SOURCE_DIR}/MOTOR/LK
     )
 endif()
 
@@ -120,13 +114,6 @@ if(MODULE_BOARDCOMM)
         BOARDCOMM/module_boardcomm.c
     )
     list(APPEND _module_includes ${CMAKE_CURRENT_SOURCE_DIR}/BOARDCOMM)
-endif()
-
-if(MODULE_VOFA)
-    list(APPEND _module_sources
-        VOFA/vofa.c
-    )
-    list(APPEND _module_includes ${CMAKE_CURRENT_SOURCE_DIR}/VOFA)
 endif()
 
 # 创建库

@@ -10,8 +10,6 @@
 #define _MOTOR_DEF_H_
 
 #include "bsp_can.h"
-#include "bsp_uart.h"
-#include "bsp_pwm.h"
 #include "lqr.h"
 #include "module_offline.h"
 #include "pid.h"
@@ -36,9 +34,7 @@ typedef enum
 /* 传输层类型 */
 typedef enum
 {
-    MOTOR_TRANSPORT_CAN  = 0,
-    MOTOR_TRANSPORT_UART = 1,
-    MOTOR_TRANSPORT_PWM  = 2,
+    MOTOR_TRANSPORT_CAN = 0,
 } Motor_Transport_e;
 
 /* 电机控制设置 (闭环类型, 反转标志, 反馈来源) */
@@ -85,12 +81,6 @@ typedef enum
     DM8009,
     DM3507,
     DM3519,
-    /* 翎控电机 */
-    MG8016,
-    /* 舵机 */
-    SERVO_GENERIC,
-    /* UART 电机 */
-    ZDT_STEEP_MOTOR,
 } Motor_Type_e;
 
 /* 电机基本信息 */
@@ -124,10 +114,7 @@ typedef struct
 } Motor_Controller_Init_s;
 
 /*  电机初始化配置
- *  根据 transport 字段选择 transport_config 中的对应成员:
- *    MOTOR_TRANSPORT_CAN  → transport_config.can
- *    MOTOR_TRANSPORT_UART → transport_config.uart
- *    MOTOR_TRANSPORT_PWM  → transport_config.pwm
+ *  当前仅支持 CAN: transport 必须为 MOTOR_TRANSPORT_CAN，使用 transport_config.can
  */
 typedef struct
 {
@@ -141,8 +128,6 @@ typedef struct
     union
     {
         Can_Device_Init_Config_s can;
-        UART_Device_init_config  uart;
-        PWM_Init_Config          pwm;
     } transport_config;
 } Motor_Init_Config_s;
 

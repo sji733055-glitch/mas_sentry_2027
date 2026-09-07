@@ -38,9 +38,6 @@
 #if MODULE_BOARDCOMM
 #include "module_boardcomm.h"
 #endif
-#if MODULE_VOFA
-#include "vofa.h"
-#endif
 
 
 #define LOG_LVL LOG_LVL_INFO
@@ -78,9 +75,6 @@ void MODULE_Init(void)
 #endif
 #if MODULE_BOARDCOMM
     Module_BoardComm_Init();
-#endif
-#if MODULE_VOFA
-    Module_VOFA_Init();
 #endif
 
     LOG_I("Modules init finished");
