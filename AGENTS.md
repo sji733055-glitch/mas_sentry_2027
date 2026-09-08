@@ -2,7 +2,7 @@
 
 ## Build
 
-- This repository has no root CMake project; configure from a board source directory (`board/dji_c`, `board/damiao_h7`, or `board/f103_c8`) and use the ARM bare-metal GCC toolchain.
+- This repository has no root CMake project; configure from a board source directory (`board/dji_c` or `board/damiao_h7`) and use the ARM bare-metal GCC toolchain.
 - Required host tools are `cmake`, `ninja`, and `arm-none-eabi-gcc`; `ccache` is used automatically when installed. `cppcheck` is required only when explicitly configured with `-DMAS_REQUIRE_CPPCHECK=ON`.
 - A focused build is:
   `cmake -S board/dji_c -B build/dji_c/Debug --preset Debug`
@@ -26,7 +26,7 @@
 ## Checks And Workflow
 
 - Format changed C/C++ files with the repository `.clang-format` (`clang-format -i <files>`). Cppcheck/clang-tidy settings are in `.clang-tidy`; CI's `cppcheck-log` covers only `board/bsp`, `modules`, `apps`, and `utils`.
-- CI builds every discovered robot/board-role configuration for `damiao_h7` and `dji_c`, then runs cppcheck for merge requests targeting `dev`. It does not validate `f103_c8`.
+- CI builds every discovered robot/board-role configuration for `damiao_h7` and `dji_c`, then runs cppcheck for merge requests targeting `dev`.
 - `main` accepts merges only from this repository's `dev` branch. Pushing to `dev` triggers the automated merge into `dev-systemview`.
 - `.gitattributes` marks `threadx/**` and `utils/**` as `merge=ours` for the `dev` to `dev-systemview` merge. Before doing that merge locally, register the driver with `git config merge.ours.driver true`.
 - Flashing is hardware-dependent and supports only `damiao_h7` and `dji_c`; use `.vscode/flash_interactive.sh <board> <probe>` after building, with probe `stlink`, `daplink`, or `jlink`.

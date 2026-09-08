@@ -48,12 +48,6 @@ void BSP_Init(void)
 #if BSP_USB_ENABLE
     cdc_acm_init(0, USB_OTG_FS_PERIPH_BASE);
 #endif
-#elif defined(STM32F105xC) || defined(STM32F103xB)
-    BSP_DWT_Init(72);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
-    BSP_DWT_Delay(0.1);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
-    BSP_DWT_Delay(0.1);
 #endif
 
     BSP_LED_Init();
